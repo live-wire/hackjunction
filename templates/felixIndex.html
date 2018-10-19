@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+    <title>PR NIST</title>
+    <style>
+
+        *,html,body{
+        font-family: 'Titillium Web', sans-serif;
+        color:"#444444";
+        }
+    </style>
+    <script src="static/dwv/dist/dwv.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="static/helloWorld.js"></script>
+
+    <script>
+
+        function sendToServer() {
+            alert("borf diddly");
+
+            fetch("/testPostMethod",
+            {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({"hello":"world"})
+            })
+            .then(function(res){
+                res.json().then(function(data){
+                    document.getElementById("answerBox").innerHTML="server says: "+data['hello'];
+                })
+                })
+            .then(function(data){ console.log( JSON.stringify( data ) ) });
+
+        }
+
+
+        ////DWV init stuff
+        // base function to get elements
+        dwv.gui.getElement = dwv.gui.base.getElement;
+        dwv.gui.displayProgress = function (percent) {};
+
+        // create the dwv app
+        var app = new dwv.App();
+        // initialise with the id of the container div
+        app.init({
+            "containerDivId": "dwv",
+            "tools" : ["Scroll"],
+        });
+        ///////
+
+        function loadDWVImages(images){
+            var brainFiles = document.getElementById("brainImages");
+            var retText = "";
+            if ('files' in brainFiles){
+                if (brainFiles.files.length == 0){
+                    retText = "select yoself some files homes";
+                }else{
+                    alert("loadin up files homes");
+                   
+                    console.log(brainFiles.files)
+                    app.loadFiles(brainFiles.files);
+                }
+            }
+        }
+        function putDWVImagesAndShit(){
+            // load dicom data
+            app.loadURLs(["https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323851.dcm","https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323707.dcm","https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323563.dcm"]);
+        }
+        // putDWVImagesAndShit();
+    </script>
+
+
+</head>
+
+    <body>
+        <h1 style="font-size:50px;">Hello World</h1>
+        <form action = "javascript:sendToServer()" method = "post">
+            <input type = "text" name = "textInputName" id="sampleInputId" />
+            <input type="file" multiple id ="brainImages" name="brainImages" onchange="loadDWVImages()">
+        </form>
+        <h1 id="answerBox"></h1>
+
+        <div id="dwv">
+            <div class="layerContainer">
+                <canvas class="imageLayer"></canvas>
+            </div>
+        </div>
+
+        <button onclick = "putDWVImagesAndShit()">Borf</button>
+
+    </body>
+</html>
