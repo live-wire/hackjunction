@@ -1,0 +1,56 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red251\green2\blue7;\red251\green2\blue7;}
+{\*\expandedcolortbl;;\cssrgb\c100000\c14913\c0;\cssrgb\c100000\c14913\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 What we have: \
+\
+Per brain, x number of slides showing different slices of the brain at different latitudes. \
+\
+Given there were just a single image per brain, supervised learning to observe patterns that reveal cancer would be, given sufficient data, somewhat trivial (not to say that it would necessarily lead to good results but a simple approach would be feasible).\
+\
+However, there are many and varying numbers of slides per brain. Therefore, we must have some way to adjust our neural network to take a greater number of inputs or we would have to parse the images beforehand and somehow combine them into one thing.\
+\
+Here is the strategy that seems most logical to me:\
+\
+A tumour is not a 2d object. There will be little difference in recognising a tumour at latitude x.0 than at x.5. Therefore, we need not examine every single pixture. That will speed up our computation and allow us to standardise.\
+\
+I suggest we take a set number of latitudes (say 10 or 20, we can tweak this depending on the effectiveness of the network\'92s results) entered around the 0.0 latitude mark. This one below, for example, has latitude -53.75mm. \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 {{\NeXTGraphic Screen Shot 2018-10-20 at 02.11.32.png \width23260 \height7860 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}Say we took -75 thru 75, incrementing at approximately every 7 millimetres. That would give us roughly 22 samples per brain 
+\b Note: the exact numbers on this might vary heavily from brain to brain and anything quantitative might be total bogus and is certainly to change based on improved understanding/intelligence/tiredness
+\b0 .
+\b\fs36  \cf2 TODO: FIGURE OUT HOW TO EXTRACT GREYSCALE DATA FROM DICOM IMAGES, LIKELY USING THE {\field{\*\fldinst{HYPERLINK "https://www.npmjs.com/package/dicom-parser"}}{\fldrslt DICOM PARSER API. }}
+\b0\fs24 \cf0 Given  something like 100x100 images (we could also shrink these down in size/quality in order to achieve greater efficiency in training), that would give us 22*100,000 = 220,000 inputs 
+\i just 
+\i0 comprising the greyscale for the brain. That is obviously a helluva lot @Druzh (forgive the misspelling) you will have to say whether this is feasible and what we might to do improve this.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+Then for several additional inputs (the metadata attached to the images can also be very neatly parsed using {\field{\*\fldinst{HYPERLINK "https://rawgit.com/cornerstonejs/dicomParser/master/examples/dragAndDropParse/index.html"}}{\fldrslt dicom-parser}}), we would have things such as sex, age, etc. etc. (@Tavishi you will have to say which other parameters might be useful and potentially most indicative of cancer. If you were able to really take a deep dive into the DICOM format and come up with all data standardly stored in each, that would be super helpful I believe). \
+\
+Say we gain an extra 100 inputs. We would then combine this into a huge 220,100 length input. With the network we will create, we can train the data based on these, and hopefully come up with some useful results. 
+\b\fs36 \cf3 TODO FIGURE OUT HOW TO KNOW WHETHER A GIVEIN BRAIN HAS CANCER; WITHOUT THIS SUPERVISED LEARNING IS IMPOSSIBLE (OBVIOUSLY) AND THERE ARE SUFFICIENT DIFFERENCES BETWEEN ANY GIVEN BRAINS THAT UNSUPERVISED LEARNING/PATTERN SEARCHING SEEMS SILLY\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b0\fs24 \cf0 I think the biggest head-scratcher will be the best way to numerically represent the grey-scale data of the brains. Another potential solution could be rather than just to take every 7-ish pixture and ignore the rest, rather to try and average out each stack of 7. I don\'92t know whether this will be helpful.\
+\
+Another possibility would be to take all the pixures and have a million inputs. This is probably not the best solution, although @Druzh will have to comment on this.\
+\
+Another possibility would be, with the cranial knowledge of @Tavishi, to focus on specific areas of the brain where tumours may be most likely to lie. I know diddly-squat about this, and I also don\'92t know whether it is even feasible to make assumptions like saying \'93tumours are mostly found here and here\'94 by specifying a box (out of latitude and longitude coordinates) for us to focus on. \
+\
+
+\b In general, we can probably edit out the corners of the image because they are always black and not relevant. 
+\b0 \
+\
+Another potential solution: design an algorithm to compress all the brain images into each other. I have no clue how we would do this lol.\
+\
+Another thing to consider is that there are several types of scan per folder/brain. The first several appear to be CAT\'92s. Then there are MRI\'92s. Then there are two more that I am not familiar with (@Tavishi any ideas here?) It is worth pointing out that the brain projection API that I am using presently can only handle 1 type at once (because they are different sizes - not that that really matters but it is potentially relevant to the neural network given input structure and such. In fact, there are several different Horos projections per brain - I don\'92t really understand exactly what is going on there but perhaps @Tavishi does? For example, when I upload a folder, there are 4 different \'93patients\'94 that come up (even tho it\'92s all the same person) - perhaps these are the 4 different scan styles? \
+\
+It\'92s also worth pointing out that there are sometimes artificial markings on the scans that very well might not be standardised in the medical community (and would add a ton of noise to our network\'92s learning struggle). Might we try and remove these?\
+\
+In summary: I believe we are going to have to invest a lot of time in transforming the data into a feasibly small, yet effective, input for a supervised learning environment. I believe that will be the crux of the issue - if we succeed in that, we can train; if not, idk haha. \
+}
