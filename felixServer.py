@@ -14,6 +14,7 @@ from random import randint;
 from flask import render_template
 
 cpu = "--"
+from preparation import dcmprocess as dp
 
 
 
@@ -53,12 +54,8 @@ def classify():
 def testPostMethod():
     print('yes im requested')
     fileNames = [];
-    print(request.files)
-    for x in request.files:
-        fileName = request.files[x].filename;
-        ds = pydicom.dcmread(request.files[x]);
-        fileNames.append(str(ds.pixel_array));
-    return json.dumps({'fileNames':str(fileNames)});
+    retval = dp.extractFeaturesFromFiles(request.files)
+    return json.dumps(retval)
     # return str(fileNames);
 
 

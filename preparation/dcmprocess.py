@@ -64,35 +64,74 @@ def extractFeatures(PathDicom):
         ArrayMR = {}
     return ArrayCT, ArrayMR, metadata
 
+def extractFeaturesFromFiles(PathDicom):
+    print("Processing uploads")
+    lstCTFilesDCM = []
+    lstMRFilesDCM = []
+    lstOtherFilesDCM = []
+    metadata = {}
+    metaExtracted = False
+    for it in PathDicom:
+        filename = PathDicom[it].filename
+        filename = filename[filename.index("/")+1:]
+        if ".dcm" in filename.lower() and "ct" in filename.lower()[:2]:  # check whether the file's CT
+            lstCTFilesDCM.append(PathDicom[it])
+            if not metaExtracted:
+                metadata = extractMetaData(PathDicom[it])
+                metaExtracted = True
+        elif ".dcm" in filename.lower() and "mr" in filename.lower()[:2]:  # check whether the file's MR
+            lstMRFilesDCM.append(PathDicom[it])
+            if not metaExtracted:
+                metadata = extractMetaData(PathDicom[it])
+                metaExtracted = True
+        else:
+            lstOtherFilesDCM.append(PathDicom[it])
+    
+    ArrayCT = {}
+    ArrayMR = {}
+    # if len(lstCTFilesDCM) > 0:
+    #     refDsCT = dicom.read_file(lstCTFilesDCM[0])
+    #     ArrayCT = getDicomArray(refDsCT, lstCTFilesDCM)
+    # if len(lstMRFilesDCM) > 0:
+    #     refDsMR = dicom.read_file(lstMRFilesDCM[0])
+    #     ArrayMR = getDicomArray(refDsMR, lstMRFilesDCM)
+
+    temp = {}
+    temp['ct'] = ArrayCT
+    temp['mr'] = ArrayMR
+    temp['meta'] = metadata
+    print("returning", temp['meta'])
+    return temp
 
 def extractMetaData(filenameDCM):
     extract = ['PatientBirthDate', 'PatientID', 'PatientName', 'ImageComments', 'PatientSex', 'StudyDate', 'InstitutionName', 'ReferringPhysicianName', 'SOPInstanceUID']
     ds = dicom.read_file(filenameDCM)
     temp = {}
     for item in extract:
-        temp[item] = getattr(ds, item, 'NA')
+        attr = getattr(ds, item, 'NA')
+        temp[item] = str(attr)
     return temp
 
 def extractAndSave(dataset='dataset/'):
-	foldernames = os.listdir(dataset)
-	foldernames.remove('.DS_Store')
-	for i,user in enumerate(foldernames):
-	    path = "./" + dataset + user + "/"
-	    if (not os.path.isfile('npy/'+user+'.npy')):
-		    temp = {}
-		    ret = extractFeatures(path)
-		    temp['ct'] = ret[0]
-		    temp['mr'] = ret[1]
-		    temp['meta'] = ret[2]
-		    np.save('npy/'+str(user)+'.npy', temp)
+    foldernames = os.listdir(dataset)
+    foldernames.remove('.DS_Store')
+    for i,user in enumerate(foldernames):
+        path = "./" + dataset + user + "/"
+        if (not os.path.isfile('npy/'+user+'.npy')):
+            temp = {}
+            ret = extractFeatures(path)
+            temp['ct'] = ret[0]
+            temp['mr'] = ret[1]
+            temp['meta'] = ret[2]
+            np.save('npy/'+str(user)+'.npy', temp)
 
 def main():
-	if os.path.isfile('users.npy'):
-		users = np.load('users.npy')
-	else:
-		dataset = 'dataset/'
-		extractAndSave(dataset)
+    if os.path.isfile('users.npy'):
+        users = np.load('users.npy')
+    else:
+        dataset = 'dataset/'
+        extractAndSave(dataset)
 
 if __name__ == "__main__":
-	main()
+    main()
 
