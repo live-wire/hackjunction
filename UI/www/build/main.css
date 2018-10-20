@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Archivo");
 .ion-ios-add:before {
   content: "\f102";
 }
@@ -3813,6 +3815,10 @@ ion-icon::before {
   font-style: normal;
   font-weight: 700;
   src: local("Noto Sans Bold"), local("Noto-Sans-Bold"), url("../assets/fonts/noto-sans-bold.woff") format("woff"), url("../assets/fonts/noto-sans-bold.ttf") format("truetype");
+}
+
+* {
+  font-family: "Roboto", "Helvetica Neue", sans-serif !important;
 }
 
 ion-action-sheet {
@@ -25676,6 +25682,8 @@ ion-navbar.toolbar {
 
 page-home ion-content {
   background-color: #C4DFE6 !important;
+  background-image: url(../../assets/imgs/background.jpg);
+  background-size: cover;
 }
 
 page-home .wrapper {
@@ -25684,12 +25692,24 @@ page-home .wrapper {
   display: -ms-flexbox;
   display: flex;
   height: 50%;
-  margin-top: 10%;
-  margin-bottom: 20%;
+  margin-top: 15%;
+  margin-bottom: 15%;
   width: 100%;
 }
 
 page-home .elements {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+page-home .elements.brain {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -25702,16 +25722,11 @@ page-home .elements {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
 page-home .column {
-  background-color: #66A5AD;
-  border-radius: 35px;
+  background-color: #ccc6c6;
+  border-radius: 20px;
   padding: 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -25723,11 +25738,21 @@ page-home .column {
   -ms-flex-direction: column;
   flex-direction: column;
   margin: 30px;
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border: 1px solid #498e97;
+}
+
+page-home .icon {
+  float: right;
+}
+
+page-home .details {
+  float: right;
 }
 
 page-home [name="title"] {
+  margin-top: 3%;
   font-size: 8rem;
   background-color: #C4DFE6;
   border-radius: 35px;
@@ -25740,6 +25765,7 @@ page-home [name="title"] {
   z-index: -5;
   display: block;
   text-shadow: none;
+  float: left;
 }
 
 page-home [name="input"] {
@@ -25765,11 +25791,8 @@ page-home [name="output"] {
 
 page-home .subtitle {
   font-weight: bold;
-  font-size: 1.5em;
-}
-
-page-home .properties-wrap {
-  margin-top: 25%;
+  font-size: 2em;
+  float: left;
 }
 
 page-home input:focus,
@@ -25779,16 +25802,40 @@ page-home button:focus {
   outline: none;
 }
 
+page-home .varian {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+page-home .component-header {
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  border-bottom: 2px groove black;
+}
+
 page-home .upload-btn-wrapper {
   position: relative;
   overflow: hidden;
-  display: inline-block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 25%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 page-home .btn {
-  border: 2px solid #66A5AD;
-  color: #66A5AD;
-  background-color: #C4DFE6;
+  border: 2px solid lightgray;
+  color: #aaadad;
+  background-color: #e9e6e6;
   padding: 8px 20px;
   border-radius: 8px;
   font-size: 20px;
@@ -25804,5 +25851,23 @@ page-home .upload-btn-wrapper input[type=file] {
 }
 
 page-home .text {
-  font-size: 1.2em;
+  font-size: 1.3em;
+  font-weight: 500;
+  float: left;
+}
+
+page-home .text.notes {
+  margin-top: 5px;
+}
+
+page-home .details {
+  font-size: 1.1em;
+}
+
+page-home .details.notes {
+  margin-top: 5px;
+}
+
+page-home ion-img {
+  border-radius: 50%;
 }

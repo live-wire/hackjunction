@@ -58,7 +58,7 @@ var HomePage = /** @class */ (function () {
     }
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\pages\home\home.html"*/'<ion-content>\n\n  <div name="title">Train Tumors</div>\n\n  <div class="wrapper">\n\n    <patient-input class="column box effect8" name="input"></patient-input>\n\n    <meta-data class="column" name="meta"></meta-data>\n\n    <patient-output class="column" name="output"></patient-output>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\pages\home\home.html"*/'<ion-content>\n\n  <div name="title">Train Tumors</div>\n\n  <div class="wrapper">\n\n    <patient-input class="column box effect8" name="input"></patient-input>\n\n    <meta-data class="column" name="meta"></meta-data>\n\n    <patient-output class="column" name="output"></patient-output>\n\n  </div>\n\n  <img class="varian" height="36" width="138.4" src="../../assets/icon/varian.png">\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
     ], HomePage);
@@ -228,7 +228,7 @@ var PatientInputComponent = /** @class */ (function () {
     };
     PatientInputComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'patient-input',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-input\patient-input.html"*/'<div class="subtitle">Input Patient Image</div>\n\n<div class="properties-wrap">\n\n    <div class="elements">\n\n        <div class="upload-btn-wrapper">\n\n                <button class="btn" (click)="changeView()">Upload a file</button>\n\n                <input type="file" name="myfile" />\n\n        </div>    \n\n    </div>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-input\patient-input.html"*/
+            selector: 'patient-input',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-input\patient-input.html"*/'<div class="component-header">\n\n    <div class="subtitle">Patient Image</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/upload.png">\n\n</div>\n\n<div class="properties-wrap">\n\n    <div class="elements">\n\n        <div class="upload-btn-wrapper">\n\n                <button class="btn" (click)="changeView()">Upload a file</button>\n\n                <input type="file" name="myfile" webkitdirectory mozdirectory/>\n\n        </div>    \n\n    </div>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-input\patient-input.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], PatientInputComponent);
@@ -268,7 +268,7 @@ var MetaDataComponent = /** @class */ (function () {
     }
     MetaDataComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'meta-data',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\meta-data\meta-data.html"*/'<div class="subtitle">Patient Information</div>\n\n<div class="properties-wrap">\n\n  <div class="elements">\n\n    <div class="text">Age: 34</div>\n\n    <div class="text">Sex: F</div>\n\n    <div class="text">Doctor treating: Miller</div>\n\n  </div>\n\n</div>'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\meta-data\meta-data.html"*/
+            selector: 'meta-data',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\meta-data\meta-data.html"*/'<div class="component-header">\n\n    <div class="subtitle">Patient Information</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/info.png">\n\n</div>\n\n<div class="properties-wrap">\n\n  <div class="elements">\n\n    <div>    \n\n      <div class="text">Name: </div> \n\n      <div class="details">Felix Herron</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">ID: </div> \n\n      <div class="details">#56833</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Birth: </div> \n\n      <div class="details">12.1.1978 (Age 34)</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Sex: </div> \n\n      <div class="details">Female</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Doctor treating: </div> \n\n      <div class="details">Czapmoney</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text notes">Notes: </div> \n\n      <div class="details notes">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo."</div>\n\n    </div>\n\n</div>'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\meta-data\meta-data.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], MetaDataComponent);
@@ -307,7 +307,7 @@ var PatientOutputComponent = /** @class */ (function () {
     }
     PatientOutputComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'patient-output',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-output\patient-output.html"*/'<div class="subtitle">Patient critical Picture</div>\n\n<div class="properties-wrap">\n\n    <div class="elements">\n\n        <ion-img width="260" height="146" src="../assets/imgs/patient-brain.jpg"></ion-img>\n\n    </div>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-output\patient-output.html"*/
+            selector: 'patient-output',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-output\patient-output.html"*/'<div class="component-header">\n\n    <div class="subtitle">CT Scan</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/brain.png">\n\n</div>\n\n<div class="properties-wrap">\n\n    <div class="elements brain">\n\n        <ion-img width="260" height="260" src="../assets/imgs/patient-brain.jpg"></ion-img>\n\n    </div>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-output\patient-output.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], PatientOutputComponent);
