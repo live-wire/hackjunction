@@ -25848,6 +25848,23 @@ page-home .cancer-info {
   margin-left: 20%;
 }
 
+page-home .imageLayer {
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+}
+
+page-home .imageLayer:hover {
+  position: relative;
+  border-radius: 0;
+  top: -80px;
+  left: -100px;
+  width: 500px;
+  height: auto;
+  display: block;
+  z-index: 999;
+}
+
 page-home [name="close-circle"] {
   color: red;
   float: left;

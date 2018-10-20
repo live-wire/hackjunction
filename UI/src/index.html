@@ -34,6 +34,77 @@
 
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
+  <script src="./assets/dwv/dist/dwv.min.js"></script>
+  <script>
+
+
+      function sendToServer() {
+          alert("borf diddly");
+          var data = new FormData();
+          for (var i = 0; i < inputSelector.files.length; i ++){
+              data.append(i.toString(), inputSelector.files[i])    
+          }
+
+
+          
+          fetch("/testPostMethod",
+          {
+              method: "POST",
+              body: data
+          }).then(function(res){
+              res.json().then(function(data){
+                  console.log(data);
+                  document.getElementById("answerBox").innerHTML="server says: "+data['fileNames'];
+              })
+          })
+          .then(function(data){ console.log( JSON.stringify( data ) ) });
+
+      }
+
+
+      ////DWV init stuff
+      // base function to get elements
+      dwv.gui.getElement = dwv.gui.base.getElement;
+      dwv.gui.displayProgress = function (percent) {};
+
+      // create the dwv app
+      var app = new dwv.App();
+      // initialise with the id of the container div
+      app.init({
+          "containerDivId": "dwv",
+          "tools" : ["Scroll"],
+      });
+      ///////
+
+
+      function loadDWVImages(images){
+          var brainFiles = document.getElementById("brainImagesSelector");
+          var retText = "";
+          if ('files' in brainFiles){
+              if (brainFiles.files.length == 0){
+                  retText = "select yoself some files homes";
+              }else{
+                  alert("Files will need some time to be processed");
+                  alert = function() {};
+
+                 
+                  console.log(brainFiles.files)
+                  app.loadFiles(brainFiles.files);
+                  console.log("schwupps");
+                  console.log("diwupps");
+
+              }
+          }
+      }
+      function putDWVImagesAndShit(){
+          // load dicom data
+          app.loadURLs(["https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323851.dcm","https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323707.dcm","https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323563.dcm"]);
+      }
+      // putDWVImagesAndShit();
+  </script>
+      <script>const inputSelector = document.getElementById("brainImagesSelector");
+      </script>
+
 
   <!-- The polyfills js is generated during the build process -->
   <script src="build/polyfills.js"></script>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 /**
  * Generated class for the PatientOutputComponent component.
@@ -13,9 +13,12 @@ import { Component } from '@angular/core';
 export class PatientOutputComponent {
 
   text: string;
-  path: string = '';
-
-  constructor() {}
-
   
+
+  constructor(private elementRef: ElementRef) {}
+
+  // public makeBigger() {
+  //   let image = this.elementRef.nativeElement.querySelector('.imageLayer');
+  //   image.
+  // }
 }

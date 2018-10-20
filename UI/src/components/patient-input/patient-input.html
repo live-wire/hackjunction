@@ -5,8 +5,11 @@
 <div class="properties-wrap">
     <div class="elements">
         <div class="upload-btn-wrapper">
-            <button class="btn" (click)="changeView()">Upload a file</button>
-            <input type="file" name="myfile" webkitdirectory mozdirectory/>
+                <h1 id="answerBox"></h1>
+            <form action = "javascript:sendToServer()" method = "post">     
+                <button class="btn">Upload a file</button>
+                <input type="file" type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages()" webkitdirectory mozdirectory/>
+            </form>
         </div>    
     </div>
 </div>
