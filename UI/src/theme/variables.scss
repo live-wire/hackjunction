@@ -88,3 +88,9 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Archivo');
+
+*{
+ font-family: "Roboto", "Helvetica Neue", sans-serif !important;
+}
