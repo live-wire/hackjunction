@@ -53,8 +53,7 @@ def testPostMethod():
     for x in request.files:
         fileName = request.files[x].filename;
         ds = pydicom.dcmread(request.files[x]);
-        fileNames.append(ds.PatientName);
-        
+        fileNames.append(str(ds.pixel_array));
     return json.dumps({'fileNames':str(fileNames)});
     # return str(fileNames);
 
