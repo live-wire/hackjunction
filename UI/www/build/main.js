@@ -220,12 +220,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Components.
  */
 var PatientInputComponent = /** @class */ (function () {
-    //public inputSelector = document.getElementById("brainImagesSelector");
     function PatientInputComponent() {
     }
     PatientInputComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'patient-input',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-input\patient-input.html"*/'<div class="component-header">\n\n    <div class="subtitle">Patient Image</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/upload.png">\n\n</div>\n\n<div class="properties-wrap">\n\n    <div class="elements">\n\n        <div class="upload-btn-wrapper">\n\n                <h1 id="answerBox"></h1>\n\n            <form action = "javascript:sendToServer()" method = "post">     \n\n                <button class="btn">Upload a file</button>\n\n                <input type="file" type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages()" webkitdirectory mozdirectory/>\n\n            </form>\n\n        </div>    \n\n    </div>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-input\patient-input.html"*/
+            selector: 'patient-input',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-input\patient-input.html"*/'<div class="component-header">\n\n    <div class="subtitle">Patient Image</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/upload.png">\n\n</div>\n\n<div class="properties-wrap">\n\n    <div class="elements">\n\n        <div class="upload-btn-wrapper">\n\n                <h1 id="answerBox"></h1>\n\n            <form action = "javascript:sendToServer()" method = "post">     \n\n                <button class="btn">Upload a file</button>\n\n                <input type="file" type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages(); sendToServer();" webkitdirectory mozdirectory/>\n\n            </form>\n\n        </div>    \n\n    </div>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-input\patient-input.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], PatientInputComponent);
