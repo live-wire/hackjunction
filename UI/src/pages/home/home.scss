@@ -74,6 +74,10 @@ page-home {
         width: 15em;
     }
 
+    *{
+        overflow: hidden;
+    }
+
     [name="meta"] {
         float: left;
         width: 33.33%;
