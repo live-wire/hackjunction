@@ -3817,10 +3817,6 @@ ion-icon::before {
   src: local("Noto Sans Bold"), local("Noto-Sans-Bold"), url("../assets/fonts/noto-sans-bold.woff") format("woff"), url("../assets/fonts/noto-sans-bold.ttf") format("truetype");
 }
 
-* {
-  font-family: "Roboto", "Helvetica Neue", sans-serif !important;
-}
-
 ion-action-sheet {
   left: 0;
   top: 0;
@@ -25691,7 +25687,7 @@ page-home .wrapper {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 50%;
+  height: 60%;
   margin-top: 15%;
   margin-bottom: 15%;
   width: 100%;
@@ -25795,6 +25791,10 @@ page-home .subtitle {
   float: left;
 }
 
+page-home .subtitle {
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+
 page-home input:focus,
 page-home select:focus,
 page-home textarea:focus,
@@ -25821,7 +25821,7 @@ page-home .upload-btn-wrapper {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 25%;
+  margin-top: 30%;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -25830,6 +25830,27 @@ page-home .upload-btn-wrapper {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+page-home ion-icon {
+  display: block;
+  font-size: 2em;
+  float: left;
+}
+
+page-home [name="checkmark-circle"] {
+  color: green;
+  float: left;
+}
+
+page-home .cancer-info {
+  margin-top: 5%;
+  margin-left: 20%;
+}
+
+page-home [name="close-circle"] {
+  color: red;
+  float: left;
 }
 
 page-home .btn {

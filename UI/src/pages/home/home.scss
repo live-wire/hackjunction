@@ -8,7 +8,7 @@ page-home {
 
     .wrapper {
         display: flex;
-        height: 50%;
+        height: 60%;
         margin-top: 15%;
         margin-bottom: 15%;
         width: 100%;
@@ -16,8 +16,6 @@ page-home {
 
     .elements {
         display: flex;
-        // justify-content: center;
-        // align-items: center;
         flex-direction: column;
     }
 
@@ -91,7 +89,9 @@ page-home {
         font-size: 2em;
         float: left;
     }
-
+    .subtitle {
+        font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;;
+    }
     .properties-wrap {
     }
 
@@ -118,11 +118,32 @@ page-home {
     position: relative;
     overflow: hidden;
     display: flex;
-    margin-top: 25%;
+    margin-top: 30%;
     justify-content: center;
     align-items: center;
   }
-  
+
+  ion-icon {
+    display: block;
+    font-size: 2em;
+    float: left;
+  }
+
+  [name="checkmark-circle"] {
+    color: green;
+    float: left;
+}
+
+.cancer-info {
+    margin-top: 5%;
+    margin-left: 20%;
+}
+
+[name="close-circle"] {
+    color: red;
+    float: left;
+}
+
   .btn {
     border: 2px solid lightgray;
     color: rgb(170, 173, 173);
