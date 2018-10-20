@@ -260,12 +260,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var MetaDataComponent = /** @class */ (function () {
     function MetaDataComponent() {
-        console.log('Hello MetaDataComponent Component');
-        this.text = 'Hello World';
+        this.name = 'Felix Herron';
+        this.id = 56833;
+        this.dateOfBirth = '12.1.1978';
+        this.age = 34;
+        this.sex = 'female';
+        this.doctor = 'Czapmoney';
+        this.notes = '"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo."';
     }
     MetaDataComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'meta-data',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\meta-data\meta-data.html"*/'<div class="component-header">\n\n    <div class="subtitle">Patient Information</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/info.png">\n\n</div>\n\n<div class="properties-wrap">\n\n  <div class="elements">\n\n    <div>    \n\n      <div class="text">Name: </div> \n\n      <div class="details">Felix Herron</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">ID: </div> \n\n      <div class="details">#56833</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Birth: </div> \n\n      <div class="details">12.1.1978 (Age 34)</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Sex: </div> \n\n      <div class="details">Female</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Doctor treating: </div> \n\n      <div class="details">Czapmoney</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text notes">Notes: </div> \n\n      <div class="details notes">"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo."</div>\n\n    </div>\n\n</div>'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\meta-data\meta-data.html"*/
+            selector: 'meta-data',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\meta-data\meta-data.html"*/'<div class="component-header">\n\n    <div class="subtitle">Patient Information</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/info.png">\n\n</div>\n\n<div class="properties-wrap">\n\n  <div class="elements">\n\n    <div>    \n\n      <div class="text">Name: </div> \n\n      <div class="details">{{name}}</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">ID: </div> \n\n      <div class="details">#{{id}}</div>\n\n    </div>\n\n    <div>\n\n      <div class="text">Birth: </div> \n\n      <div class="details">{{dateOfBirth}} (Age {{age}})</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Sex: </div> \n\n      <div class="details">{{sex}}</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Doctor treating: </div> \n\n      <div class="details">{{doctor}}</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text notes">Notes: </div> \n\n      <div class="details notes">{{notes}}</div>\n\n    </div>\n\n</div>'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\meta-data\meta-data.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], MetaDataComponent);
@@ -299,14 +304,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Components.
  */
 var PatientOutputComponent = /** @class */ (function () {
-    function PatientOutputComponent(elementRef) {
-        this.elementRef = elementRef;
+    function PatientOutputComponent() {
+        this.hasCancer = true;
     }
     PatientOutputComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'patient-output',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-output\patient-output.html"*/'<div class="component-header">\n\n    <div class="subtitle">CT Scan</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/brain.png">\n\n</div>\n\n<div class="properties-wrap">\n\n    <div class="elements brain">\n\n            <div id="dwv">\n\n                    <div class="layerContainer">\n\n                        <canvas class="imageLayer"></canvas>\n\n                    </div>\n\n                </div>\n\n        <!-- <ion-img width="260" height="260" src="../assets/imgs/patient-brain.jpg"></ion-img> -->\n\n    </div>\n\n<div class="cancer-info">\n\n    <ion-icon name="checkmark-circle"> no cancer detected</ion-icon>\n\n    <ion-icon name="close-circle"> potential cancer detected</ion-icon>\n\n</div>\n\n    <!-- <img class="nocancer" height="40" width="40" src="../../assets/icon/nocancer.png">\n\n    <img class="cancer" height="40" width="40" src="../../assets/icon/x.png"> -->\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-output\patient-output.html"*/
+            selector: 'patient-output',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-output\patient-output.html"*/'<div class="component-header">\n\n    <div class="subtitle">CT Scan</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/brain.png">\n\n</div>\n\n<div class="properties-wrap">\n\n    <div class="elements brain">\n\n            <div id="dwv">\n\n                    <div class="layerContainer">\n\n                        <canvas class="imageLayer"></canvas>\n\n                    </div>\n\n                </div>\n\n        <!-- <ion-img width="260" height="260" src="../assets/imgs/patient-brain.jpg"></ion-img> -->\n\n    </div>\n\n<div class="cancer-info">\n\n    <ion-icon *ngIf="!hasCancer" name="checkmark-circle"> no cancer detected</ion-icon>\n\n    <ion-icon *ngIf="hasCancer" name="close-circle"> potential cancer detected</ion-icon>\n\n</div>\n\n    <!-- <img class="nocancer" height="40" width="40" src="../../assets/icon/nocancer.png">\n\n    <img class="cancer" height="40" width="40" src="../../assets/icon/x.png"> -->\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-output\patient-output.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]])
+        __metadata("design:paramtypes", [])
     ], PatientOutputComponent);
     return PatientOutputComponent;
 }());

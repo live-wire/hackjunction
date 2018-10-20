@@ -11,14 +11,10 @@ import { Component, ElementRef } from '@angular/core';
   templateUrl: 'patient-output.html'
 })
 export class PatientOutputComponent {
-
-  text: string;
   
+  public hasCancer;
 
-  constructor(private elementRef: ElementRef) {}
-
-  // public makeBigger() {
-  //   let image = this.elementRef.nativeElement.querySelector('.imageLayer');
-  //   image.
-  // }
+  constructor() {
+    this.hasCancer = true;
+  }
 }
