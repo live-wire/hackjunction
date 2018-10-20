@@ -58,7 +58,7 @@ var HomePage = /** @class */ (function () {
     }
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\pages\home\home.html"*/'<ion-content>\n\n  <div name="title">Train Tumors</div>\n\n  <div class="wrapper">\n\n    <patient-input class="column box effect8" name="input"></patient-input>\n\n    <meta-data class="column" name="meta"></meta-data>\n\n    <patient-output class="column" name="output"></patient-output>\n\n  </div>\n\n  <img class="varian" height="36" width="138.4" src="../../assets/icon/varian.png">\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackjunction\UI\src\pages\home\home.html"*/'<ion-content>\n\n  <div name="title">Train Tumors</div>\n\n  <div class="wrapper">\n\n    <patient-input class="column box effect8" name="input"></patient-input>\n\n    <meta-data class="column" name="meta"></meta-data>\n\n    <patient-output class="column" name="output"></patient-output>\n\n  </div>\n\n  <img class="varian" height="36" width="138.4" src="../../assets/icon/varian.png">\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackjunction\UI\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
     ], HomePage);
@@ -186,7 +186,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackjunction\UI\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackjunction\UI\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -203,6 +203,7 @@ var MyApp = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PatientInputComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -213,6 +214,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 /**
  * Generated class for the PatientInputComponent component.
  *
@@ -220,15 +222,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Components.
  */
 var PatientInputComponent = /** @class */ (function () {
-    function PatientInputComponent() {
+    function PatientInputComponent(navCtrl, elementRef) {
+        this.navCtrl = navCtrl;
+        this.elementRef = elementRef;
     }
     PatientInputComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'patient-input',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-input\patient-input.html"*/'<div class="component-header">\n\n    <div class="subtitle">Patient Image</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/upload.png">\n\n</div>\n\n<div class="properties-wrap">\n\n    <div class="elements">\n\n        <div class="upload-btn-wrapper">\n\n                <h1 id="answerBox"></h1>\n\n            <form action = "javascript:sendToServer()" method = "post">     \n\n                <button class="btn">Upload a file</button>\n\n                <input type="file" type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages(); sendToServer();" webkitdirectory mozdirectory/>\n\n            </form>\n\n        </div>    \n\n    </div>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-input\patient-input.html"*/
+            selector: 'patient-input',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackjunction\UI\src\components\patient-input\patient-input.html"*/'<div class="component-header">\n\n    <div class="subtitle">Patient Image</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/upload.png">\n\n</div>\n\n<div class="properties-wrap">\n\n    <div class="elements">\n\n        <div class="upload-btn-wrapper">\n\n                <h1 id="answerBox"></h1>\n\n            <form action = "javascript:sendToServer()" method = "post">     \n\n                <button class="btn">Upload a file</button>\n\n                <input type="file" type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages(); sendToServer();" webkitdirectory mozdirectory/>\n\n            </form>\n\n        </div>    \n\n    </div>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackjunction\UI\src\components\patient-input\patient-input.html"*/
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _b || Object])
     ], PatientInputComponent);
     return PatientInputComponent;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=patient-input.js.map
@@ -269,7 +274,7 @@ var MetaDataComponent = /** @class */ (function () {
     }
     MetaDataComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'meta-data',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\meta-data\meta-data.html"*/'<div class="component-header">\n\n    <div class="subtitle">Patient Information</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/info.png">\n\n</div>\n\n<div class="properties-wrap">\n\n  <div class="elements">\n\n    <div>    \n\n      <div class="text">Name: </div> \n\n      <div class="details">{{name}}</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">ID: </div> \n\n      <div class="details">#{{id}}</div>\n\n    </div>\n\n    <div>\n\n      <div class="text">Birth: </div> \n\n      <div class="details">{{dateOfBirth}} (Age {{age}})</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Sex: </div> \n\n      <div class="details">{{sex}}</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Doctor treating: </div> \n\n      <div class="details">{{doctor}}</div>\n\n    </div>\n\n    <div>    \n\n      <div class="text notes">Notes: </div> \n\n      <div class="details notes">{{notes}}</div>\n\n    </div>\n\n</div>'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\meta-data\meta-data.html"*/
+            selector: 'meta-data',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackjunction\UI\src\components\meta-data\meta-data.html"*/'<div class="component-header">\n\n    <div class="subtitle">Patient Information</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/info.png">\n\n</div>\n\n<div class="properties-wrap">\n\n  <div class="elements">\n\n    <div>    \n\n      <div class="text">Name: </div> \n\n      <div class="details name"></div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">ID: </div> \n\n      <div class="details id"></div>\n\n    </div>\n\n    <div>\n\n      <div class="text">Birth: </div> \n\n      <div class="details dateOfBirth"></div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Sex: </div> \n\n      <div class="details sex"></div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Image taken on: </div> \n\n      <div class="details imageDate"></div>\n\n    </div>\n\n    <div>    \n\n      <div class="text">Institution: </div> \n\n      <div class="details doctor"></div>\n\n    </div>\n\n    <div>    \n\n      <div class="text notes">Notes: </div> \n\n      <div class="details notes"></div>\n\n    </div>\n\n</div>'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackjunction\UI\src\components\meta-data\meta-data.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], MetaDataComponent);
@@ -309,7 +314,7 @@ var PatientOutputComponent = /** @class */ (function () {
     }
     PatientOutputComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'patient-output',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-output\patient-output.html"*/'<div class="component-header">\n\n    <div class="subtitle">Diagnostic Image</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/brain.png">\n\n</div>\n\n<div class="properties-wrap">\n\n    <div class="elements brain">\n\n            <div id="dwv">\n\n                    <div class="layerContainer">\n\n                        <canvas class="imageLayer"></canvas>\n\n                    </div>\n\n                </div>\n\n        <!-- <ion-img width="260" height="260" src="../assets/imgs/patient-brain.jpg"></ion-img> -->\n\n    </div>\n\n<div class="cancer-info" *ngIf="showCancerInfo">\n\n    <ion-icon *ngIf="!hasCancer" name="checkmark-circle"> no cancer detected</ion-icon>\n\n    <ion-icon *ngIf="hasCancer" name="close-circle"> potential cancer detected</ion-icon>\n\n</div>\n\n    <!-- <img class="nocancer" height="40" width="40" src="../../assets/icon/nocancer.png">\n\n    <img class="cancer" height="40" width="40" src="../../assets/icon/x.png"> -->\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackathon\git\UI\src\components\patient-output\patient-output.html"*/
+            selector: 'patient-output',template:/*ion-inline-start:"C:\Users\Sylwester\Desktop\hackjunction\UI\src\components\patient-output\patient-output.html"*/'<div class="component-header">\n\n    <div class="subtitle">Diagnostic Image</div>\n\n    <img height="40" width="40" class="icon" src="../../assets/icon/brain.png">\n\n</div>\n\n<div class="properties-wrap">\n\n    <div class="elements brain">\n\n            <div id="dwv">\n\n                    <div class="layerContainer">\n\n                        <canvas class="imageLayer"></canvas>\n\n                    </div>\n\n                </div>\n\n        <!-- <ion-img width="260" height="260" src="../assets/imgs/patient-brain.jpg"></ion-img> -->\n\n    </div>\n\n<div class="cancer-info" *ngIf="showCancerInfo">\n\n    <ion-icon *ngIf="!hasCancer" name="checkmark-circle"> no cancer detected</ion-icon>\n\n    <ion-icon *ngIf="hasCancer" name="close-circle"> potential cancer detected</ion-icon>\n\n</div>\n\n    <!-- <img class="nocancer" height="40" width="40" src="../../assets/icon/nocancer.png">\n\n    <img class="cancer" height="40" width="40" src="../../assets/icon/x.png"> -->\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Sylwester\Desktop\hackjunction\UI\src\components\patient-output\patient-output.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], PatientOutputComponent);

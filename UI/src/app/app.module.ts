@@ -26,7 +26,8 @@ import { PatientOutputComponent } from '../components/patient-output/patient-out
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    MetaDataComponent
   ],
   providers: [
     StatusBar,
