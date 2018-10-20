@@ -4,7 +4,9 @@ from waitress import serve
 import base64
 import pydicom
 from pydicom.data import get_testdata_files
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 from random import randint;
 # app.run(debug=True)
 
@@ -49,7 +51,9 @@ def classify():
 
 @app.route("/testPostMethod", methods=['POST'])
 def testPostMethod():
+    print('yes im requested')
     fileNames = [];
+    print(request.files)
     for x in request.files:
         fileName = request.files[x].filename;
         ds = pydicom.dcmread(request.files[x]);
@@ -80,4 +84,4 @@ def job():
     return json.dumps({'Status':'OK'})
 
 if __name__ == "__main__":
-    serve(app,host='127.0.0.1', port=5000)
+    serve(app,host='127.0.0.1', port=8101)

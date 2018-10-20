@@ -25775,6 +25775,10 @@ page-home [name="upload"] {
   width: 15em;
 }
 
+page-home * {
+  overflow: hidden;
+}
+
 page-home [name="meta"] {
   float: left;
   width: 33.33%;

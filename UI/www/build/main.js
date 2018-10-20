@@ -220,12 +220,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Components.
  */
 var PatientInputComponent = /** @class */ (function () {
-    //public inputSelector = document.getElementById("brainImagesSelector");
     function PatientInputComponent() {
     }
     PatientInputComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'patient-input',template:/*ion-inline-start:"/Users/f002nb9/Documents/f002nb9/hackBudapest/hackjunction/UI/src/components/patient-input/patient-input.html"*/'<div class="component-header">\n    <div class="subtitle">Patient Image</div>\n    <img height="40" width="40" class="icon" src="../../assets/icon/upload.png">\n</div>\n<div class="properties-wrap">\n    <div class="elements">\n        <div class="upload-btn-wrapper">\n                <h1 id="answerBox"></h1>\n            <form action = "javascript:sendToServer()" method = "post">     \n                <button class="btn">Upload a file</button>\n                <input type="file" type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages()" webkitdirectory mozdirectory/>\n            </form>\n        </div>    \n    </div>\n</div>\n'/*ion-inline-end:"/Users/f002nb9/Documents/f002nb9/hackBudapest/hackjunction/UI/src/components/patient-input/patient-input.html"*/
+            selector: 'patient-input',template:/*ion-inline-start:"/Users/f002nb9/Documents/f002nb9/hackBudapest/hackjunction/UI/src/components/patient-input/patient-input.html"*/'<div class="component-header">\n    <div class="subtitle">Patient Image</div>\n    <img height="40" width="40" class="icon" src="../../assets/icon/upload.png">\n</div>\n<div class="properties-wrap">\n    <div class="elements">\n        <div class="upload-btn-wrapper">\n                <h1 id="answerBox"></h1>\n            <form action = "javascript:sendToServer()" method = "post">     \n                <button class="btn">Upload a file</button>\n                <input type="file" type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages(); sendToServer();" webkitdirectory mozdirectory/>\n            </form>\n        </div>    \n    </div>\n</div>\n'/*ion-inline-end:"/Users/f002nb9/Documents/f002nb9/hackBudapest/hackjunction/UI/src/components/patient-input/patient-input.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], PatientInputComponent);
@@ -305,11 +304,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var PatientOutputComponent = /** @class */ (function () {
     function PatientOutputComponent() {
-        this.hasCancer = true;
+        this.hasCancer = false;
+        this.showCancerInfo = false;
     }
     PatientOutputComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'patient-output',template:/*ion-inline-start:"/Users/f002nb9/Documents/f002nb9/hackBudapest/hackjunction/UI/src/components/patient-output/patient-output.html"*/'<div class="component-header">\n    <div class="subtitle">CT Scan</div>\n    <img height="40" width="40" class="icon" src="../../assets/icon/brain.png">\n</div>\n<div class="properties-wrap">\n    <div class="elements brain">\n            <div id="dwv">\n                    <div class="layerContainer">\n                        <canvas class="imageLayer"></canvas>\n                    </div>\n                </div>\n        <!-- <ion-img width="260" height="260" src="../assets/imgs/patient-brain.jpg"></ion-img> -->\n    </div>\n<div class="cancer-info">\n    <ion-icon *ngIf="!hasCancer" name="checkmark-circle"> no cancer detected</ion-icon>\n    <ion-icon *ngIf="hasCancer" name="close-circle"> potential cancer detected</ion-icon>\n</div>\n    <!-- <img class="nocancer" height="40" width="40" src="../../assets/icon/nocancer.png">\n    <img class="cancer" height="40" width="40" src="../../assets/icon/x.png"> -->\n</div>\n'/*ion-inline-end:"/Users/f002nb9/Documents/f002nb9/hackBudapest/hackjunction/UI/src/components/patient-output/patient-output.html"*/
+            selector: 'patient-output',template:/*ion-inline-start:"/Users/f002nb9/Documents/f002nb9/hackBudapest/hackjunction/UI/src/components/patient-output/patient-output.html"*/'<div class="component-header">\n    <div class="subtitle">Diagnostic Image</div>\n    <img height="40" width="40" class="icon" src="../../assets/icon/brain.png">\n</div>\n<div class="properties-wrap">\n    <div class="elements brain">\n            <div id="dwv">\n                    <div class="layerContainer">\n                        <canvas class="imageLayer"></canvas>\n                    </div>\n                </div>\n        <!-- <ion-img width="260" height="260" src="../assets/imgs/patient-brain.jpg"></ion-img> -->\n    </div>\n<div class="cancer-info" *ngIf="showCancerInfo">\n    <ion-icon *ngIf="!hasCancer" name="checkmark-circle"> no cancer detected</ion-icon>\n    <ion-icon *ngIf="hasCancer" name="close-circle"> potential cancer detected</ion-icon>\n</div>\n    <!-- <img class="nocancer" height="40" width="40" src="../../assets/icon/nocancer.png">\n    <img class="cancer" height="40" width="40" src="../../assets/icon/x.png"> -->\n</div>\n'/*ion-inline-end:"/Users/f002nb9/Documents/f002nb9/hackBudapest/hackjunction/UI/src/components/patient-output/patient-output.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], PatientOutputComponent);

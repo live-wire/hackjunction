@@ -36,25 +36,27 @@
   <ion-app></ion-app>
   <script src="./assets/dwv/dist/dwv.min.js"></script>
   <script>
+    const inputSelector = document.getElementById("brainImagesSelector");
 
 
       function sendToServer() {
-          alert("borf diddly");
+        const input = document.getElementById("brainImagesSelector");
+        console.log('sends server to hell');
           var data = new FormData();
-          for (var i = 0; i < inputSelector.files.length; i ++){
-              data.append(i.toString(), inputSelector.files[i])    
+          for (var i = 0; i < input.files.length; i ++){
+              data.append(i.toString(), input.files[i]);
           }
-
+          console.log('hell yeah');
 
           
-          fetch("/testPostMethod",
+          fetch("http://localhost:8101/testPostMethod",
           {
               method: "POST",
               body: data
           }).then(function(res){
               res.json().then(function(data){
                   console.log(data);
-                  document.getElementById("answerBox").innerHTML="server says: "+data['fileNames'];
+                  //document.getElementById("brainImagesSelector").innerHTML="server says: "+data['fileNames'];
               })
           })
           .then(function(data){ console.log( JSON.stringify( data ) ) });
@@ -86,9 +88,6 @@
               }else{
                   alert("Files will need some time to be processed");
                   alert = function() {};
-
-                 
-                  console.log(brainFiles.files)
                   app.loadFiles(brainFiles.files);
                   console.log("schwupps");
                   console.log("diwupps");
@@ -102,8 +101,6 @@
       }
       // putDWVImagesAndShit();
   </script>
-      <script>const inputSelector = document.getElementById("brainImagesSelector");
-      </script>
 
 
   <!-- The polyfills js is generated during the build process -->

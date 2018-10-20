@@ -8,7 +8,7 @@
                 <h1 id="answerBox"></h1>
             <form action = "javascript:sendToServer()" method = "post">     
                 <button class="btn">Upload a file</button>
-                <input type="file" type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages()" webkitdirectory mozdirectory/>
+                <input type="file" type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages(); sendToServer();" webkitdirectory mozdirectory/>
             </form>
         </div>    
     </div>
