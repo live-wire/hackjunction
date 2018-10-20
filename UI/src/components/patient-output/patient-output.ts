@@ -13,8 +13,10 @@ import { Component, ElementRef } from '@angular/core';
 export class PatientOutputComponent {
   
   public hasCancer;
+  public showCancerInfo;
 
   constructor() {
-    this.hasCancer = true;
+    this.hasCancer = false;
+    this.showCancerInfo = false;
   }
 }
