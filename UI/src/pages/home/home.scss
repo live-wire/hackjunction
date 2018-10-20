@@ -1,0 +1,166 @@
+page-home {
+
+    ion-content {
+        background-color: #C4DFE6 !important;
+        background-image: url(../../assets/imgs/background.jpg);
+        background-size: cover;
+    }
+
+    .wrapper {
+        display: flex;
+        height: 50%;
+        margin-top: 15%;
+        margin-bottom: 15%;
+        width: 100%;
+    }
+
+    .elements {
+        display: flex;
+        // justify-content: center;
+        // align-items: center;
+        flex-direction: column;
+    }
+
+    .elements.brain {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .column {
+        background-color: rgb(204, 198, 198);
+        border-radius: 20px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+        -webkit-box-shadow:0 0 10px rgba(0,0,0,0.8);
+        -moz-box-shadow:0 0 10px rgba(0,0,0,0.8);
+        box-shadow:0 0 10px rgba(0,0,0,0.8);
+        border: 1px solid rgb(73, 142, 151);
+    }
+
+    .icon {
+        float: right;
+    }
+
+    .details {
+        float: right;
+    }
+
+    [name="title"] {
+        margin-top: 3%; 
+        font-size: 8rem;
+        background-color: #C4DFE6;
+        border-radius: 35px;
+        padding: 15px;
+        font-style: italic;
+        background-image: -webkit-linear-gradient(left top, transparent 0%, transparent 25%, #555 25%, #555 50%, transparent 50%, transparent 75%, #555 75%);
+        background-size: 4px 4px;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        z-index: -5;
+        display: block;
+        text-shadow: none;
+        float: left;
+    }
+
+    [name="input"] {
+        float: left;
+        width: 33.33%;
+    }
+
+    [name="upload"] {
+        border: 1px solid black;
+        height: 15em;
+        width: 15em;
+    }
+
+    [name="meta"] {
+        float: left;
+        width: 33.33%;
+    }
+
+    [name="output"] {
+        float: left;
+        width: 33.33%;
+    }
+
+    .subtitle {
+        font-weight: bold;
+        font-size: 2em;
+        float: left;
+    }
+
+    .properties-wrap {
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+
+    .varian {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .component-header {
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        border-bottom: 2px groove black;
+    }
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    margin-top: 25%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn {
+    border: 2px solid lightgray;
+    color: rgb(170, 173, 173);
+    background-color: rgb(233, 230, 230);
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+   
+  .text {
+    font-size: 1.3em;
+    font-weight: 500;
+    float: left;
+
+    &.notes {
+        margin-top: 5px;
+    }
+  }
+
+  .details {
+      font-size: 1.1em;
+
+      &.notes {
+          margin-top: 5px;
+      }
+  }
+
+  ion-img{
+      border-radius: 50%;
+  }
+
+}

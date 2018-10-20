@@ -18,20 +18,26 @@
 
     <script>
 
+
         function sendToServer() {
             alert("borf diddly");
+            var data = new FormData();
+            for (var i = 0; i < inputSelector.files.length; i ++){
+                data.append(i.toString(), inputSelector.files[i])    
+            }
 
+
+            
             fetch("/testPostMethod",
             {
                 method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify({"hello":"world"})
-            })
-            .then(function(res){
+                body: data
+            }).then(function(res){
                 res.json().then(function(data){
-                    document.getElementById("answerBox").innerHTML="server says: "+data['hello'];
+                    console.log(data);
+                    document.getElementById("answerBox").innerHTML="server says: "+data['fileNames'];
                 })
-                })
+            })
             .then(function(data){ console.log( JSON.stringify( data ) ) });
 
         }
@@ -51,8 +57,9 @@
         });
         ///////
 
+
         function loadDWVImages(images){
-            var brainFiles = document.getElementById("brainImages");
+            var brainFiles = document.getElementById("brainImagesSelector");
             var retText = "";
             if ('files' in brainFiles){
                 if (brainFiles.files.length == 0){
@@ -64,6 +71,7 @@
                     app.loadFiles(brainFiles.files);
                     console.log("schwupps");
                     console.log("diwupps");
+
                 }
             }
         }
@@ -81,7 +89,7 @@
         <h1 style="font-size:50px;">Hello World</h1>
         <form action = "javascript:sendToServer()" method = "post">
             <input type = "text" name = "textInputName" id="sampleInputId" />
-            <input type="file" multiple id ="brainImages" name="brainImages" onchange="loadDWVImages()">
+            <input type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages()">
         </form>
         <h1 id="answerBox"></h1>
 
@@ -91,7 +99,8 @@
             </div>
         </div>
 
-        <button onclick = "putDWVImagesAndShit()">Borf</button>
+        <button onclick = "javascript:sendToServer()">Borf</button>
 
     </body>
+    <script>const inputSelector = document.getElementById("brainImagesSelector");</script>
 </html>
