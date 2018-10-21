@@ -1,9 +1,19 @@
 <ion-content>
-  <div name="title">Train Tumors</div>
+   <div class="logo-wrapper">
+      <img id="logo" src="../../assets/imgs/logo.png">
+      <img id="junction" src="../../assets/icon/junction.png">
+   </div> 
+  <!-- <div name="title">Train Tumors</div> -->
   <div class="wrapper">
     <patient-input class="column box effect8" name="input"></patient-input>
     <meta-data class="column" name="meta"></meta-data>
     <patient-output class="column" name="output"></patient-output>
   </div>
-  <img class="varian" height="36" width="138.4" src="../../assets/icon/varian.png">
+  <div class="wrapper-two">
+      <ct-photos class="column" name="ct"></ct-photos>
+      <mr-photos class="column" name="mr"></mr-photos>
+      <dimensional-model class="column" name="model"></dimensional-model>
+  
+    </div>
+  <!-- <img class="varian" height="36" width="138.4" src="../../assets/icon/varian.png"> -->
 </ion-content>

@@ -1,0 +1,18 @@
+<div class="component-header">
+    <div class="subtitle">MR Images</div>
+    <img height="40" width="40" style="color: lightgray" class="icon" src="../../assets/icon/mr.png">
+</div>
+<div class="properties-wrap">
+    <div class="elements brain">
+        <div id="mr-photo-placeholder"></div>
+
+        <!-- <ion-img width="260" height="260" src="../assets/imgs/patient-brain.jpg"></ion-img> -->
+    </div>
+<div class="cancer-info" *ngIf="showCancerInfo">
+    <ion-icon *ngIf="!hasCancer" name="checkmark-circle"> no cancer detected</ion-icon>
+    <ion-icon *ngIf="hasCancer" name="close-circle"> potential cancer detected</ion-icon>
+</div>
+    <!-- <img class="nocancer" height="40" width="40" src="../../assets/icon/nocancer.png">
+    <img class="cancer" height="40" width="40" src="../../assets/icon/x.png"> -->
+</div>
+

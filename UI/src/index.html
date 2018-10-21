@@ -38,32 +38,80 @@
   <script>
     const inputSelector = document.getElementById("brainImagesSelector");
 
+    function sendToServer() {
+    const input = document.getElementById("brainImagesSelector");
+      var data = new FormData();
+      var fullPath = input.value;
+    if (fullPath) {
+        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+        var filename = fullPath.substring(startIndex);
+        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+            filename = filename.substring(1);
+        }
+        filename = filename.split(".")[1];
+    }
+    mrFilename = 'https://storage.googleapis.com/junctionx/images/' + filename + 'MR.png';
+    ctFilename = 'https://storage.googleapis.com/junctionx/images/' + filename + 'CT.png';
 
-      function sendToServer() {
-        const input = document.getElementById("brainImagesSelector");
-        console.log('sends server to hell');
-          var data = new FormData();
-          for (var i = 0; i < input.files.length; i ++){
-              data.append(i.toString(), input.files[i]);
-          }
-          console.log('hell yeah');
+    var img = document.createElement("img");
+    img.src = mrFilename;
 
-          
-          fetch("http://localhost:8101/testPostMethod",
-          {
-              method: "POST",
-              body: data
-          }).then(function(res){
-              res.json().then(function(data){
-                  console.log(data);
-                  //document.getElementById("brainImagesSelector").innerHTML="server says: "+data['fileNames'];
-              })
-          })
-          .then(function(data){ console.log( JSON.stringify( data ) ) });
+    var src = document.getElementById("mr-photo-placeholder");
+    src.appendChild(img);
 
+    img = document.createElement("img");
+    img.src = ctFilename;
+
+    src = document.getElementById("ct-photo-placeholder");
+    src.appendChild(img);
+      for (var i = 0; i < input.files.length; i ++){
+          data.append(i.toString(), input.files[i]);
       }
-
-
+      fetch("http://localhost:8101/testPostMethod",
+      {
+          method: "POST",
+          body: data
+      }).then((res) => {
+          res.json().then((data) => {
+            data = data.meta;
+            // let meta = data.meta;
+//             div.details.name
+// 1: div.details.id
+// 2: div.details.dateOfBirth
+// 3: div.details.sex
+// 4: div.details.imageDate
+// 5: div.details.doctor
+// 6: div.details.notes
+            var elements = document.querySelectorAll('.details');
+            var name = data.PatientName;
+            var id = data.PatientID;
+            var dateOfBirth = data.PatientBirthDate;
+            var sex = data.PatientSex;
+            var doctor = data.InstitutionName;
+            var notes = data.ImageComments;
+            var imageDate = data.StudyDate;
+            console.log(data);
+            var year = dateOfBirth.slice(0,4);
+            var month = dateOfBirth.slice(4,6);
+            var day = dateOfBirth.slice(6,8);
+            var year2 = imageDate.slice(0,4);
+            var month2 = imageDate.slice(4,6);
+            var day2 = imageDate.slice(6,8);
+            if (sex == 'F') {
+                sex = 'female';
+            } else {
+                sex = 'male';
+            }
+            elements[0].innerHTML = name;
+            elements[1].innerHTML = id;
+            elements[2].innerHTML = day + '.' + month + '.' + year;
+            elements[3].innerHTML = sex;
+            elements[4].innerHTML = day2 + '.' + month2 + '.' + year2;
+            elements[5].innerHTML = doctor;
+            elements[6].innerHTML = notes;
+          })
+      })
+  }
       ////DWV init stuff
       // base function to get elements
       dwv.gui.getElement = dwv.gui.base.getElement;

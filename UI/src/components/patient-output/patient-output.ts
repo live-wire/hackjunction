@@ -1,4 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the PatientOutputComponent component.
@@ -19,4 +20,5 @@ export class PatientOutputComponent {
     this.hasCancer = false;
     this.showCancerInfo = false;
   }
+
 }
