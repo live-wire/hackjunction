@@ -3,11 +3,13 @@ import json
 from waitress import serve
 import base64
 import pydicom
+import io
+from flask import Response
 from pydicom.data import get_testdata_files
-from flask_cors import CORS
 app = Flask(__name__)
-CORS(app)
 from random import randint;
+from contourLinePlotter import createPlot
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 # app.run(debug=True)
 
 # from final_model import get_result
@@ -60,6 +62,16 @@ def testPostMethod():
         fileNames.append(str(ds.pixel_array));
     return json.dumps({'fileNames':str(fileNames)});
     # return str(fileNames);
+
+@app.route("/generate3dTumorModel",methods=['POST'])
+def generate3dTumorModel():
+    fileNames = [];
+    file = request.files['file'];
+    fig = createPlot(file);
+   
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
 
 
 """

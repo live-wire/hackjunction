@@ -6,117 +6,92 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from mpl_toolkits.mplot3d import Axes3D
 
-# filename = str(input("give the file name of the results file you'd like to parse"));
-filename = '/Users/f002nb9/Documents/f002nb9/hackBudapest/dataSetFolderStuff/Dataset/386661/RS.386661.MR_1.dcm';
-ds = None;
-try:
-	ds = pydicom.dcmread(filename)
-except:
-	print("that file name didn't fucking work you moron get yo head of you ass")
-	exit(0);
 
-sequences = ds.ROIContourSequence;
-m =0;
-for eachContourSequence in sequences:
-	if len(eachContourSequence.ContourSequence) > m:
-		m = len(eachContourSequence.ContourSequence);
-
-rows = m;
-cols = len(sequences);
-fig = plt.figure()
-tuuD = False;
-# if tuuD:
-# 	axes = [None]*rows*cols;
-# 	print(axes);
-# 	counter = 0;
-# 	for x in range(rows):
-# 		for y in range(cols):
-# 			counter += 1;
-# 			axes[counter-1]=fig.add_subplot(rows,cols,counter);
-# 	print(axes);
-
-# 	counter = 0;
+filename = "/Users/f002nb9/Documents/f002nb9/hackBudapest/dataSetFolderStuff/Dataset/346231/RS.346231.MR_1.dcm";
 
 
+def createPlot(filename):
+	ds = None;
+	try:
+		ds = pydicom.dcmread(filename)
+	except:
+		print("that file name didn't fucking work you moron get yo head of you ass")
+		exit(0);
 
-# 	for eachContourSequence in sequences:
+	sequences = ds.ROIContourSequence;
+	m =0;
+	for eachContourSequence in sequences:
+		if len(eachContourSequence.ContourSequence) > m:
+			m = len(eachContourSequence.ContourSequence);
 
-# 		eachContourSequence = eachContourSequence.ContourSequence
-# 		for eachContourWithinSequence in eachContourSequence:
-# 			data = eachContourWithinSequence.ContourData;
-# 			xs = [];
-# 			ys = [];
-# 			counter += 1;
-# 			plt.subplot(rows,cols,counter);
-
-
-# 			for i in range(len(data)):
-# 				if i%3 == 2:
-# 					pass;
-# 				elif i%3==0:
-# 					xs.append(data[i]);
-# 				else:
-# 					ys.append(data[i])
-# 			plt.scatter(xs,ys);
-# 			axes[counter-1].title.set_text("Contour n. " + str(counter % rows + 1) + " Sequence: " + str(int(counter/cols)))
-# else:
-ax = fig.add_subplot(121, projection='3d')
-ax2 = fig.add_subplot(122, projection='3d')
-xs = [];
-ys = [];
-zs = [];
-colors = [];
-
-# plt.axis('off')
-
-def init():
-	ax.scatter(xs, ys, zs, c=colors, alpha=0.6)
-	return ax
-def animate(i):
-	ax.view_init(elev=10., azim=i)
-	return ax
-
-counter = 0;
-
-for eachContourSequence in sequences:
-	# counter += 1;
-
-	eachContourSequence = eachContourSequence.ContourSequence
+	rows = m;
+	cols = len(sequences);
+	fig = plt.figure()
+	tuuD = False;
 	
-	for eachContourWithinSequence in eachContourSequence:
+	ax = fig.add_subplot(111, projection='3d')
+	# ax2 = fig.add_subplot(122, projection='3d')
+	xs = [];
+	ys = [];
+	zs = [];
+	colors = [];
 
-		data = eachContourWithinSequence.ContourData;
-		# colors = cm.rainbow(np.linspace(0, 1, len(data)/3))
-		
-		
-		counter += 1;
-		# plt.subplot(rows,cols,counter);
-		color = float(counter)/rows;
-		
+	# plt.axis('off')
 
-		
-		for i in range(len(data)):
-			if i%3 == 0:
-				xs.append(data[i]);
-			elif i%3==1:
-				ys.append(data[i]);
-			else:
-				zs.append(data[i])
-				colors.append(color);
-				
+	def init():
+		ax.scatter(xs, ys, zs, c=colors, alpha=0.6)
+		return ax
+	def animate(i):
+		ax.view_init(elev=10., azim=i)
+		return ax
 
-	ax.scatter(xs, ys, zs,c=colors)
+	counter = 0;
+
+	for eachContourSequence in sequences:
+		# counter += 1;
+
+		eachContourSequence = eachContourSequence.ContourSequence
+		
+		for eachContourWithinSequence in eachContourSequence:
+
+			data = eachContourWithinSequence.ContourData;
+			# colors = cm.rainbow(np.linspace(0, 1, len(data)/3))
+			
+			
+			counter += 1;
+			# plt.subplot(rows,cols,counter);
+			color = float(counter)/rows;
+			
+
+			
+			for i in range(len(data)):
+				if i%3 == 0:
+					xs.append(data[i]);
+				elif i%3==1:
+					ys.append(data[i]);
+				else:
+					zs.append(data[i])
+					colors.append(color);
+					
+
+		ax.scatter(xs, ys, zs,c=colors)
 	
-	
-	# anim = animation.FuncAnimation(fig, animate, init_func=init,
- #                           frames=15, interval=100)
 
-	# mywriter = animation.FFMpegWriter(fps=40)
-	# anim.save('mymovie2.mp4',writer=mywriter)
+
+
+	anim = animation.FuncAnimation(fig, animate, init_func=init,
+                           frames=300, interval=100)
+
+	mywriter = animation.FFMpegWriter(fps=40)
+	anim.save('sylwesterMRI.mp4',writer=mywriter)
+	return fig;
 
 			# axes[counter-1].title.set_text("Contour n. " + str(counter % rows + 1) + " Sequence: " + str(int(counter/cols)))
 
+createPlot(filename);
 
+"""
+circle
 rsum = 0;
 for x in xs:
 	rsum += x;
@@ -154,9 +129,9 @@ for z in range(-1*numz,numz):
 			y = rad *np.sin(theta)*np.sin(phi)
 			z = rad*np.cos(phi)
 			
-			xs2.append(x)
-			ys2.append(y)
-			zs2.append(z)
+			xs2.append(x+xAvg)
+			ys2.append(y+yAvg)
+			zs2.append(z+zAvg)
 			colors2.append(color);
 
 	# z=z*radius/numz;
@@ -169,10 +144,47 @@ for z in range(-1*numz,numz):
 	# 	zs2.append(z)
 
 
-ax2.scatter(xs2, ys2, zs2,c=colors2)
+# ax.scatter(xs2, ys2, zs2,c=colors2)
 
-print("avg: (",xAvg,",",yAvg,",",zAvg);
+
 plt.show();
+"""
+
+# if tuuD:
+	# 	axes = [None]*rows*cols;
+	# 	print(axes);
+	# 	counter = 0;
+	# 	for x in range(rows):
+	# 		for y in range(cols):
+	# 			counter += 1;
+	# 			axes[counter-1]=fig.add_subplot(rows,cols,counter);
+	# 	print(axes);
+
+	# 	counter = 0;
+
+
+
+	# 	for eachContourSequence in sequences:
+
+	# 		eachContourSequence = eachContourSequence.ContourSequence
+	# 		for eachContourWithinSequence in eachContourSequence:
+	# 			data = eachContourWithinSequence.ContourData;
+	# 			xs = [];
+	# 			ys = [];
+	# 			counter += 1;
+	# 			plt.subplot(rows,cols,counter);
+
+
+	# 			for i in range(len(data)):
+	# 				if i%3 == 2:
+	# 					pass;
+	# 				elif i%3==0:
+	# 					xs.append(data[i]);
+	# 				else:
+	# 					ys.append(data[i])
+	# 			plt.scatter(xs,ys);
+	# 			axes[counter-1].title.set_text("Contour n. " + str(counter % rows + 1) + " Sequence: " + str(int(counter/cols)))
+	# else:
 
 
 
