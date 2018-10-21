@@ -83,6 +83,8 @@ def extractFeaturesFromFiles(PathDicom):
     for it in PathDicom:
         filename = PathDicom[it].filename
         filename = filename[filename.index("/")+1:]
+        if metaExtracted:
+            break
         if ".dcm" in filename.lower() and "ct" in filename.lower()[:2]:  # check whether the file's CT
             lstCTFilesDCM.append(PathDicom[it])
             if not metaExtracted:
