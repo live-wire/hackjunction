@@ -81,6 +81,7 @@ def extractFeaturesFromFiles(PathDicom):
     metadata = {}
     metaExtracted = False
     for it in PathDicom:
+        print("iterating");
         filename = PathDicom[it].filename
         filename = filename[filename.index("/")+1:]
         if metaExtracted:
@@ -115,12 +116,23 @@ def extractFeaturesFromFiles(PathDicom):
     return temp
 
 def extractMetaData(filenameDCM):
+    print("extracting metadata!!\n\n")
+    # return "hello world";
     extract = ['PatientBirthDate', 'PatientID', 'PatientName', 'ImageComments', 'PatientSex', 'StudyDate', 'InstitutionName', 'ReferringPhysicianName', 'SOPInstanceUID']
-    ds = dicom.read_file(filenameDCM)
+    ds = dicom.dcmread(filenameDCM)
+    print("done readingr\n\n!")
     temp = {}
-    for item in extract:
-        attr = getattr(ds, item, 'NA')
-        temp[item] = str(attr)
+    temp["PatientBirthDate"] =str( ds.PatientBirthDate);
+    temp["PatientID"] =str( ds.PatientID);
+    temp["PatientName"] =str( ds.PatientName);
+    temp["ImageComments"] =str( ds.ImageComments);
+    temp["PatientSex"] =str( ds.PatientSex);
+    temp["StudyDate"] =str( ds.StudyDate);
+    temp["InstitutionName"] =str( ds.InstitutionName);
+    temp["ReferringPhysicianName"]=str(ds.ReferringPhysicianName);
+    temp["SOPInstanceUID"]=str(ds.SOPInstanceUID);
+    print("done extracting metatdata!");
+    
     return temp
 
 @timing

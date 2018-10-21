@@ -74,7 +74,8 @@
     // var src = document.getElementById("model-video-placeholder");
     // src.appendChild(vid);
 
-      for (var i = 0; i < input.files.length; i ++){
+      // for (var i = 0; i < input.files.length; i ++){
+      for (var i = 0; i < 1; i ++){
           data.append(i.toString(), input.files[i]);
       }
       fetch("http://localhost:8101/testPostMethod",
@@ -82,31 +83,41 @@
           method: "POST",
           body: data
       }).then((res) => {
+          console.log("homie homie home!!!\n\n we done in here");
           res.json().then((data) => {
-            data = data.meta;
-            // let meta = data.meta;
-//             div.details.name
-// 1: div.details.id
-// 2: div.details.dateOfBirth
-// 3: div.details.sex
-// 4: div.details.imageDate
-// 5: div.details.doctor
-// 6: div.details.notes
+            // data = data.meta;
+
+            var i = 0;
+            i = i + 1;
             var elements = document.querySelectorAll('.details');
+            i = i + 1;
             var name = data.PatientName;
+            i = i + 1;
             var id = data.PatientID;
+            i = i + 1;
             var dateOfBirth = data.PatientBirthDate;
+            i = i + 1;
             var sex = data.PatientSex;
+            i = i + 1;
             var doctor = data.InstitutionName;
+            i = i + 1;
             var notes = data.ImageComments;
+            i = i + 1;
             var imageDate = data.StudyDate;
             console.log(data);
+            i = i + 1;
             var year = dateOfBirth.slice(0,4);
+            i = i + 1;
             var month = dateOfBirth.slice(4,6);
+            i = i + 1;
             var day = dateOfBirth.slice(6,8);
+            i = i + 1;
             var year2 = imageDate.slice(0,4);
+            i = i + 1;
             var month2 = imageDate.slice(4,6);
+            i = i + 1;
             var day2 = imageDate.slice(6,8);
+            console.log("done parsing");
             if (sex == 'F') {
                 sex = 'female';
             } else {

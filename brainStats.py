@@ -26,6 +26,9 @@ class Brain:
 		self.ctOffset = 0;
 		self.mriOffset = 0;
 		self.filename = filename;
+		self.thicknessToSliceDictMRI = {};
+		self.thicknessToSliceDictCAT = {};
+		self.subsections = [][][]; #[z][x][y]
 	def calculateOffsets(self):
 		if self.ctLocations != None:
 			self.calculateCTOffset();
@@ -40,13 +43,43 @@ class Brain:
 		midValue = (self.ctLocations[0] + self.ctLocations[len(self.ctLocations)-1])/2.0;
 		self.ctOffset = midValue;
 		self.ctLocations = [(x -midValue) for x in self.ctLocations];
+		newThicknessToSliceDictCAT = {};
+		for key in self.thicknessToSliceDictCAT:
+			newThicknessToSliceDictCAT[x-midValue] = self.thicknessToSliceDictCAT[val]
+		self.thicknessToSliceDictCAT= newThicknessToSliceDictCAT
 		self.ctTumor.center = (self.ctTumor.center[0],self.ctTumor.center[1] - midValue,self.ctTumor.center[2]);
 	def calculateMROffset(self):
-		print("len: " , len(self.mrLocations));
 		midValue = (self.mrLocations[0] + self.mrLocations[len(self.mrLocations)-1])/2.0;
 		self.mriOffset = midValue;
 		self.mrLocations = [(x -midValue) for x in self.mrLocations];
+		newThicknessToSliceDictMRI = {};
+		for key in self.thicknessToSliceDictMRI:
+			newThicknessToSliceDictMRI[x-midValue] = self.thicknessToSliceDictMRI[val]
+		self.thicknessToSliceDictMRI= newThicknessToSliceDictMRI
 		self.mrTumor.center = (self.mrTumor.center[0],self.mrTumor.center[1] - midValue,self.mrTumor.center[2]);
+
+
+	def partitionInto27Segments(self):
+		print("partitioning!")
+		keys = list(self.thicknessToSliceDictMRI);
+		keys.sort();
+		yLen = len(self.thicknessToSliceDictMRI[key])
+		xLen = len(self.thicknessToSliceDictMRI)
+		for key in range(0,len(keys)/3):
+			#these are the values in the bottom third
+			xPartition0 = self.thicknessToSliceDictMRI[key][:xLen]
+			# self.subsections[0][0][0] = 
+			xPartition1 = self.thicknessToSliceDictMRI[key][xLen:2*xLen]
+			xPartition2 = self.thicknessToSliceDictMRI[key][2*xLen:3*xLen]
+			pass
+		for key in range(len(keys)/3,2*len(keys)/3):
+			#these are the values in the middle third
+			pass
+		for key in range(2*len(keys)/3,len(keys)):
+			#these are the values in the top third
+			pass
+
+
 
 
 def analyzeCatScan(catFile):
@@ -62,10 +95,10 @@ def analyzeCatScan(catFile):
 		loc = ds.SliceLocation;
 	
 		print("sl: ",ds.SliceLocation)
-		return ds.SliceLocation;
+		return ds.SliceLocation,ds.pixel_array;
 	except:
 		print("fail: ",catFile);
-		return None;
+		return None,None;
 
 def analyzeMRI(mriFile):
 	try:
@@ -80,10 +113,10 @@ def analyzeMRI(mriFile):
 		loc = ds.SliceLocation;
 		
 		print("sl: ",ds.SliceLocation)
-		return ds.SliceLocation;
+		return ds.SliceLocation,ds.pixel_array;
 	except:
 		print("fail: ",mriFile);
-		return None;
+		return None,None;
 
 def tumourizeResultsDocument(resultsDocument):
 	ds = None;
@@ -180,17 +213,19 @@ def prepBrain(brain):
 					pass
 
 				elif (simpleName[0:2]).lower() == "ct":
-					slideLocation = analyzeCatScan(filePath);
+					slideLocation,slideData = analyzeCatScan(filePath);
 					if slideLocation == None:
 						nones.append(filePath);
 					else:
+						brain.thicknessToSliceDictCAT[slideLocation] = slideData;
 						catLocations.append(slideLocation);
 
 				elif (simpleName[0:2]).lower() == "mr":
-					slideLocation = analyzeMRI(filePath);
+					slideLocation,slideData = analyzeMRI(filePath);
 					if slideLocation == None:
 						nones.append(filePath);
 					else:
+						brain.thicknessToSliceDictMRI[slideLocation] = slideData;
 						mriLocations.append(slideLocation);
 
 				elif (simpleName[0:2]).lower() == "rs":

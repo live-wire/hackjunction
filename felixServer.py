@@ -1,6 +1,5 @@
 from flask import Flask, request
 from flask_cors import CORS
-
 import json
 from waitress import serve
 import base64
@@ -57,10 +56,13 @@ def classify():
 
 @app.route("/testPostMethod", methods=['POST'])
 def testPostMethod():
-
+    print("testing post method")
     fileNames = [];
-    retval = dp.extractFeaturesFromFiles(request.files)
-    return json.dumps(retval)
+    retval = dp.extractMetaData(request.files['0'])
+    dumps = json.dumps(retval)
+    print("done dumping!!!\n\n");
+    print(dumps);
+    return dumps;
     # return str(fileNames);
 
 @app.route("/generate3dGif",methods=['POST'])

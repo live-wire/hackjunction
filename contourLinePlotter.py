@@ -47,7 +47,7 @@ def createPlot(filename,doAnime):
 		ax.scatter(xs, ys, zs, c=colors, alpha=0.6)
 		return ax
 	def animate(i):
-		ax.view_init(elev=10., azim=i)
+		ax.view_init(elev=10., azim=i*3)
 		return ax
 
 	counter = 0;
@@ -91,13 +91,14 @@ def createPlot(filename,doAnime):
 	# anim.save('currentVideo.gif',writer=mywriter)
 
 	if (doAnime):
-		ani = matplotlib.animation.FuncAnimation(fig, animate, init_func=init, frames=90,interval=20)
-		ani.save('UI/src/assets/gif/tmpGif.gif', writer='imagemagick', fps=30)
+		ani = matplotlib.animation.FuncAnimation(fig, animate, init_func=init, frames=60,interval=20)
+		ani.save('UI/src/assets/gif/tmpGif.gif', writer='imagemagick', fps=22)
+
 	return fig;
 
 			# axes[counter-1].title.set_text("Contour n. " + str(counter % rows + 1) + " Sequence: " + str(int(counter/cols)))
 
-# createPlot(filename);
+# createPlot(filename,True);
 
 """
 circle
