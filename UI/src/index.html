@@ -148,6 +148,68 @@
           // load dicom data
           app.loadURLs(["https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323851.dcm","https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323707.dcm","https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323563.dcm"]);
       }
+
+      function generate3dGif(){
+        console.log("js aufrug")
+        var data = new FormData();
+        var files = document.getElementById("brainImagesSelector").files;
+        for (var i = 0; i < files.length; i ++){
+            alert("file");
+            var fName = files[i].name.toLowerCase();
+            if (!(fName.includes("rs")&&fName.includes("mr"))){
+              continue;
+            }
+            data.append('file', files[i])    
+        }
+        console.log("gif about to fetch");
+
+        fetch("http://localhost:8101/generate3dGif",
+        {
+            method: "POST",
+            body: data
+        }).then((response) => {
+          console.log("getting gif response");
+          document.getElementById("3dModelImage").src = "assets/gif/tmpGif.gif";
+        });
+      }
+
+      function generate3dTumorModel(){
+          var data = new FormData();
+          var files = document.getElementById("brainImagesSelector").files;
+          for (var i = 0; i < files.length; i ++){
+              alert("file");
+              var fName = files[i].name.toLowerCase();
+              if (!(fName.includes("rs")&&fName.includes("mr"))){
+                continue;
+              }
+              data.append('file', files[i])    
+          }
+
+          fetch("http://localhost:8101/generate3dTumorModel",
+          {
+              method: "POST",
+              body: data
+          }).then((response) => {
+            console.log("resonse a gotten");
+            response.arrayBuffer().then((buffer) => {
+              var base64Flag = 'data:image/jpeg;base64,';
+              var imageStr = arrayBufferToBase64(buffer);
+
+              document.getElementById("3dModelImage").src = base64Flag + imageStr;
+            });
+          });
+            // .then(function(data){ console.log( JSON.stringify( data ) ) });
+            
+        }
+
+        function arrayBufferToBase64(buffer) {
+          var binary = '';
+          var bytes = [].slice.call(new Uint8Array(buffer));
+
+          bytes.forEach((b) => binary += String.fromCharCode(b));
+
+          return window.btoa(binary);
+        };
       // putDWVImagesAndShit();
   </script>
 

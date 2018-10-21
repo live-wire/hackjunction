@@ -1,7 +1,10 @@
 import os
 import pydicom
 import numpy as np
+
 from matplotlib import animation
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from mpl_toolkits.mplot3d import Axes3D
@@ -10,7 +13,7 @@ from mpl_toolkits.mplot3d import Axes3D
 filename = "/Users/f002nb9/Documents/f002nb9/hackBudapest/dataSetFolderStuff/Dataset/346231/RS.346231.MR_1.dcm";
 
 
-def createPlot(filename):
+def createPlot(filename,doAnime):
 	ds = None;
 	try:
 		ds = pydicom.dcmread(filename)
@@ -20,9 +23,11 @@ def createPlot(filename):
 
 	sequences = ds.ROIContourSequence;
 	m =0;
+	print("check1")
 	for eachContourSequence in sequences:
 		if len(eachContourSequence.ContourSequence) > m:
 			m = len(eachContourSequence.ContourSequence);
+	print("check2")
 
 	rows = m;
 	cols = len(sequences);
@@ -77,18 +82,22 @@ def createPlot(filename):
 		ax.scatter(xs, ys, zs,c=colors)
 	
 
+	print("check3");
 
+	# anim = animation.FuncAnimation(fig, animate, init_func=init,
+ #                           frames=150, interval=50)
 
-	anim = animation.FuncAnimation(fig, animate, init_func=init,
-                           frames=300, interval=100)
+	# mywriter = animation.FFMpegWriter(fps=40)
+	# anim.save('currentVideo.gif',writer=mywriter)
 
-	mywriter = animation.FFMpegWriter(fps=40)
-	anim.save('sylwesterMRI.mp4',writer=mywriter)
+	if (doAnime):
+		ani = matplotlib.animation.FuncAnimation(fig, animate, init_func=init, frames=90,interval=20)
+		ani.save('UI/src/assets/gif/tmpGif.gif', writer='imagemagick', fps=30)
 	return fig;
 
 			# axes[counter-1].title.set_text("Contour n. " + str(counter % rows + 1) + " Sequence: " + str(int(counter/cols)))
 
-createPlot(filename);
+# createPlot(filename);
 
 """
 circle
