@@ -91,7 +91,7 @@ def createPlot(filename,doAnime):
 	# anim.save('currentVideo.gif',writer=mywriter)
 
 	if (doAnime):
-		ani = matplotlib.animation.FuncAnimation(fig, animate, init_func=init, frames=60,interval=20)
+		ani = matplotlib.animation.FuncAnimation(fig, animate, init_func=init, frames=120,interval=20)
 		ani.save('UI/src/assets/gif/tmpGif.gif', writer='imagemagick', fps=22)
 
 	return fig;
