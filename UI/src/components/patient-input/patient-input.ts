@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, AfterViewInit } from '@angular/core';
+import { NavController } from 'ionic-angular';
+
 /**
  * Generated class for the PatientInputComponent component.
  *
@@ -9,7 +11,13 @@ import { Component } from '@angular/core';
   selector: 'patient-input',
   templateUrl: 'patient-input.html'
 })
+
+              
+
 export class PatientInputComponent {
-    constructor() {
+
+
+  constructor(public navCtrl: NavController, public elementRef: ElementRef) {
+    
   }
 }

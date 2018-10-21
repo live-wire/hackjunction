@@ -79,7 +79,38 @@
             // load dicom data
             app.loadURLs(["https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323851.dcm","https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323707.dcm","https://raw.githubusercontent.com/ivmartel/dwv/master/tests/data/bbmri-53323563.dcm"]);
         }
+
+        function generate3dTumorModel(){
+            var data = new FormData();
+            for (var i = 0; i < document.getElementById("3dModelSelector").files.length; i ++){
+                alert("file");
+                data.append('file', document.getElementById("3dModelSelector").files[i])    
+            }
+
+            fetch("/generate3dTumorModel",
+            {
+                method: "POST",
+                body: data
+            }).then((response) => {
+              response.arrayBuffer().then((buffer) => {
+                var base64Flag = 'data:image/jpeg;base64,';
+                var imageStr = arrayBufferToBase64(buffer);
+
+                document.getElementById('3dContainer').src = base64Flag + imageStr;
+              });
+            });
+            // .then(function(data){ console.log( JSON.stringify( data ) ) });
+            
+        }
         // putDWVImagesAndShit();
+        function arrayBufferToBase64(buffer) {
+        var binary = '';
+        var bytes = [].slice.call(new Uint8Array(buffer));
+
+        bytes.forEach((b) => binary += String.fromCharCode(b));
+
+        return window.btoa(binary);
+        };
     </script>
 
 
@@ -90,6 +121,7 @@
         <form action = "javascript:sendToServer()" method = "post">
             <input type = "text" name = "textInputName" id="sampleInputId" />
             <input type="file" multiple id ="brainImagesSelector" name="brainImagesSelector" onchange="loadDWVImages()">
+            <input type="file" id ="3dModelSelector" name="3dModelSelector" onchange="generate3dTumorModel()">
         </form>
         <h1 id="answerBox"></h1>
 
@@ -100,6 +132,9 @@
         </div>
 
         <button onclick = "javascript:sendToServer()">Borf</button>
+
+       <!--  <button onclick = "javascript:generate3dTumorModel()">3dModel press here</button> -->
+        <img id = "3dContainer"/>
 
     </body>
     <script>const inputSelector = document.getElementById("brainImagesSelector");</script>

@@ -1,0 +1,24 @@
+<div class="component-header">
+    <div class="subtitle">3D Model</div>
+    <img height="40" width="40" class="icon" src="../../assets/icon/model.png">
+</div>
+<div class="properties-wrap">
+    <div class="elements brain">
+
+        <div id="dwv">
+            <div class="layerContainer">
+                <!-- <canvas class="imageLayer"></canvas> -->
+                <img id ="3dModelImage"/>
+            </div>
+        </div>
+
+        <!-- <ion-img width="260" height="260" src="../assets/imgs/patient-brain.jpg"></ion-img> -->
+    </div>
+<div class="cancer-info" *ngIf="showCancerInfo">
+    <ion-icon *ngIf="!hasCancer" name="checkmark-circle"> no cancer detected</ion-icon>
+    <ion-icon *ngIf="hasCancer" name="close-circle"> potential cancer detected</ion-icon>
+</div>
+    <!-- <img class="nocancer" height="40" width="40" src="../../assets/icon/nocancer.png">
+    <img class="cancer" height="40" width="40" src="../../assets/icon/x.png"> -->
+</div>
+
