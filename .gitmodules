@@ -1,0 +1,6 @@
+[submodule "models/unet"]
+	path = models/unet
+	url = https://github.com/live-wire/unet.git
+[submodule "models/expyriments"]
+	path = models/expyriments
+	url = https://github.com/live-wire/expyriments.git
