@@ -54,6 +54,8 @@
     ctFilename = 'https://storage.googleapis.com/junctionx/images/' + filename + 'CT.png';
     //mrVideoname = //'https://storage.googleapis.com/junctionx/videos/' + filename + 'MR.mp4';
 
+    mrVideoname = './app/assets/video' + filename + 'MR.mp4';
+
     var img = document.createElement("img");
     img.src = mrFilename;
 
@@ -65,6 +67,13 @@
 
     src = document.getElementById("ct-photo-placeholder");
     src.appendChild(img);
+
+    // var vid = document.createElement("video");
+    // vid.src = mrVideoname;
+
+    // var src = document.getElementById("model-video-placeholder");
+    // src.appendChild(vid);
+
       for (var i = 0; i < input.files.length; i ++){
           data.append(i.toString(), input.files[i]);
       }
