@@ -7,7 +7,16 @@ mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 import pydicom as dicom
 from pydicom.data import get_testdata_files
+import time
 
+def timing(f):
+    def wrap(*args):
+        time1 = time.time()
+        ret = f(*args)
+        time2 = time.time()
+        print('{:s} function took {:.3f} s'.format(f.__name__, (time2-time1)))
+        return ret
+    return wrap
 
 def getDicomArray(refDs, lstFiles):
     ConstPixelDims = (len(lstFiles), int(refDs.Rows), int(refDs.Columns))
@@ -112,25 +121,54 @@ def extractMetaData(filenameDCM):
         temp[item] = str(attr)
     return temp
 
+@timing
 def extractAndSave(dataset='dataset/'):
     foldernames = os.listdir(dataset)
     foldernames.remove('.DS_Store')
-    for i,user in enumerate(foldernames):
-        path = "./" + dataset + user + "/"
-        if (not os.path.isfile('npy/'+user+'.npy')):
-            temp = {}
-            ret = extractFeatures(path)
-            temp['ct'] = ret[0]
-            temp['mr'] = ret[1]
-            temp['meta'] = ret[2]
-            np.save('npy/'+str(user)+'.npy', temp)
+    foldernames = ['339663', '345923', '346231', '351423', '353891']
+    x = list(map(lambda a: distributor(a), foldernames))
+    print("DONE")
+
+def distributor(user, dataset='dataset/'):    
+    path = "./" + dataset + user + "/"
+    temp = {}
+    if (not os.path.isfile('npy/'+user+'.npy')):
+        ret = extractFeatures(path)
+        temp['ct'] = ret[0]
+        temp['mr'] = ret[1]
+        temp['meta'] = ret[2]
+        np.save('npy/'+str(user)+'.npy', temp)
+    return temp
+
+from multiprocessing.dummy import Pool as ThreadPool
+import os
+import sys
+
+@timing
+def extractAndSaveDistributed(dataset='dataset/'):
+    foldernames = os.listdir(dataset)
+    foldernames.remove('.DS_Store')
+    foldernames = ['339663', '345923', '346231', '351423', '353891']
+    pool = ThreadPool(os.cpu_count())
+    x = pool.map(distributor, foldernames)
+    print("DONE")
+    pool.close()
+    pool.join()
+    
 
 def main():
+    distributed = False
+    if len(sys.argv)>1 and sys.argv[1]=='multi':
+        distributed = True
+    print("Machine CPUs:", os.cpu_count(), "Multiprocessing:", distributed)
     if os.path.isfile('users.npy'):
         users = np.load('users.npy')
     else:
         dataset = 'dataset/'
-        extractAndSave(dataset)
+        if not distributed: 
+            extractAndSave(dataset)
+        else:
+            extractAndSaveDistributed(dataset)
 
 if __name__ == "__main__":
     main()
