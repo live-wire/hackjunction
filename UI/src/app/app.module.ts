@@ -9,6 +9,9 @@ import { HomePage } from '../pages/home/home';
 import { PatientInputComponent } from '../components/patient-input/patient-input';
 import { MetaDataComponent } from '../components/meta-data/meta-data';
 import { PatientOutputComponent } from '../components/patient-output/patient-output';
+import { CtPhotosComponent } from '../components/ct-photos/ct-photos';
+import { DimensionalModelComponent } from '../components/dimensional-model/dimensional-model';
+import { MrPhotosComponent } from '../components/mr-photos/mr-photos';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { PatientOutputComponent } from '../components/patient-output/patient-out
     HomePage,
     PatientInputComponent,
     MetaDataComponent,
-    PatientOutputComponent
+    PatientOutputComponent,
+    MrPhotosComponent,
+    CtPhotosComponent,
+    DimensionalModelComponent
   ],
   imports: [
     BrowserModule,
@@ -26,8 +32,7 @@ import { PatientOutputComponent } from '../components/patient-output/patient-out
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    MetaDataComponent
+    HomePage
   ],
   providers: [
     StatusBar,

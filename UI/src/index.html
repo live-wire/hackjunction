@@ -41,6 +41,29 @@
     function sendToServer() {
     const input = document.getElementById("brainImagesSelector");
       var data = new FormData();
+      var fullPath = input.value;
+    if (fullPath) {
+        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+        var filename = fullPath.substring(startIndex);
+        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+            filename = filename.substring(1);
+        }
+        filename = filename.split(".")[1];
+    }
+    mrFilename = 'https://storage.googleapis.com/junctionx/images/' + filename + 'MR.png';
+    ctFilename = 'https://storage.googleapis.com/junctionx/images/' + filename + 'CT.png';
+
+    var img = document.createElement("img");
+    img.src = mrFilename;
+
+    var src = document.getElementById("mr-photo-placeholder");
+    src.appendChild(img);
+
+    img = document.createElement("img");
+    img.src = ctFilename;
+
+    src = document.getElementById("ct-photo-placeholder");
+    src.appendChild(img);
       for (var i = 0; i < input.files.length; i ++){
           data.append(i.toString(), input.files[i]);
       }
@@ -86,43 +109,9 @@
             elements[4].innerHTML = day2 + '.' + month2 + '.' + year2;
             elements[5].innerHTML = doctor;
             elements[6].innerHTML = notes;
-            
-
-              
-              //document.getElementById("brainImagesSelector").innerHTML="server says: "+data['fileNames'];
           })
       })
-      //.then(function(data){ console.log( JSON.stringify( data ) ) });
-
   }
-
-
-    //   function sendToServer() {
-    //     const input = document.getElementById("brainImagesSelector");
-    //     console.log('sends server to hell');
-    //       var data = new FormData();
-    //       for (var i = 0; i < input.files.length; i ++){
-    //           data.append(i.toString(), input.files[i]);
-    //       }
-    //       console.log('hell yeah');
-
-          
-    //       fetch("http://localhost:8101/testPostMethod",
-    //       {
-    //           method: "POST",
-    //           body: data
-    //       }).then(function(res){
-    //           res.json().then(function(data){
-    //               console.log(data);
-                  
-    //               //document.getElementById("brainImagesSelector").innerHTML="server says: "+data['fileNames'];
-    //           })
-    //       })
-    //       //.then(function(data){ console.log( JSON.stringify( data ) ) });
-
-    //   }
-
-
       ////DWV init stuff
       // base function to get elements
       dwv.gui.getElement = dwv.gui.base.getElement;

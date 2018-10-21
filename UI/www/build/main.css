@@ -25678,7 +25678,7 @@ ion-navbar.toolbar {
 
 page-home ion-content {
   background-color: #C4DFE6 !important;
-  background-image: url(../../assets/imgs/background.jpg);
+  background-image: url(../../assets/imgs/background-blurred.jpg);
   background-size: cover;
 }
 
@@ -25689,6 +25689,37 @@ page-home .wrapper {
   display: flex;
   height: 60%;
   margin-top: 15%;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+page-home #logo {
+  position: fixed;
+  height: 20%;
+}
+
+page-home #junction {
+  top: 8%;
+  position: fixed;
+  height: 12%;
+  right: 5px;
+}
+
+page-home .logo-wrapper {
+  position: fixed;
+  height: 20%;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(211, 211, 211, 0.8);
+}
+
+page-home .wrapper-two {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 60%;
+  margin-top: 0;
   margin-bottom: 15%;
   width: 100%;
 }
@@ -25721,8 +25752,8 @@ page-home .elements.brain {
 }
 
 page-home .column {
-  background-color: #ccc6c6;
-  border-radius: 20px;
+  opacity: 0.85;
+  background-color: #d2d7da;
   padding: 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -25736,7 +25767,7 @@ page-home .column {
   margin: 30px;
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-  border: 1px solid #498e97;
+  border: 5px solid #8661ee;
 }
 
 page-home .icon {
@@ -25750,7 +25781,7 @@ page-home .details {
 page-home [name="title"] {
   margin-top: 3%;
   font-size: 8rem;
-  background-color: #C4DFE6;
+  background-color: #90bbbd;
   border-radius: 35px;
   padding: 15px;
   font-style: italic;
@@ -25765,6 +25796,21 @@ page-home [name="title"] {
 }
 
 page-home [name="input"] {
+  float: left;
+  width: 33.33%;
+}
+
+page-home [name="mr"] {
+  float: left;
+  width: 33.33%;
+}
+
+page-home [name="ct"] {
+  float: left;
+  width: 33.33%;
+}
+
+page-home [name="model"] {
   float: left;
   width: 33.33%;
 }
@@ -25799,6 +25845,10 @@ page-home .subtitle {
   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
 }
 
+page-home .properties-wrap {
+  margin-top: 10%;
+}
+
 page-home input:focus,
 page-home select:focus,
 page-home textarea:focus,
@@ -25825,7 +25875,7 @@ page-home .upload-btn-wrapper {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 30%;
+  margin-top: 20%;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -25875,8 +25925,8 @@ page-home [name="close-circle"] {
 }
 
 page-home .btn {
-  border: 2px solid lightgray;
-  color: #aaadad;
+  border: 2px solid gray;
+  color: black;
   background-color: #e9e6e6;
   padding: 8px 20px;
   border-radius: 8px;
